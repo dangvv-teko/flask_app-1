@@ -41,6 +41,7 @@ jobs:
     - run: |
         echo '$KUBE_CONFIG' >> admin.conf
         export KUBECONFIG=$KUBECONFIG:admin.conf
+        kubectl config view
 workflows:
   version: 2
   workflow:
