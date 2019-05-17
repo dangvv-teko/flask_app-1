@@ -36,12 +36,14 @@ jobs:
     working_directory: ~/flask_app
     docker:
     - image: dangvv1995/kubectl:1.14.1
+    enviroment:
+      KUBECONFIG: k8s-teko-flask-teko-flask-conf
     steps:
     - checkout
     - run: |
-        echo "${KUBE_CONFIG}" | base64 -di > k8s-teko-flask-teko-flask-conf
+        echo "${KUBE_CONFIG}" | base64 -di > $KUBECONFIG
         sed -i "s/<VERSION>/${CIRCLE_BRANCH}_$CIRCLE_SHA1/g" deploy/hello_flask.yaml
-        KUBECONFIG=k8s-teko-flask-teko-flask-conf kubectl apply -f deploy/hello_flask.yaml -n teko-flask
+        kubectl apply -f deploy/hello_flask.yaml -n teko-flask
 workflows:
   version: 2
   workflow:
