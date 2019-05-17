@@ -40,7 +40,7 @@ jobs:
     - checkout
     - run: |
         echo "${KUBE_CONFIG}" > admin.conf
-        KUBECONFIG=admin.conf
+        KUBECONFIG="admin.conf"
         kubectl get pods
 workflows:
   version: 2
