@@ -41,7 +41,7 @@ jobs:
     steps:
     - checkout
     - run: |
-        echo "$KUBE_CONFIG" >> $KUBECONFIG
+        cat $KUBECONFIG
 workflows:
   version: 2
   workflow:
