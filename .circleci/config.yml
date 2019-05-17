@@ -40,9 +40,8 @@ jobs:
     - checkout
     - run: |
         echo "${KUBE_CONFIG}" | base64 -di > k8s-teko-flask-teko-flask-conf
-        KUBECONFIG=k8s-teko-flask-teko-flask-conf
         sed -i "s/<VERSION>/${CIRCLE_BRANCH}_$CIRCLE_SHA1/g" deploy/hello_flask.yaml
-        kubectl apply -f deploy/hello_flask.yaml -n teko-flask
+        KUBECONFIG=k8s-teko-flask-teko-flask-conf kubectl apply -f deploy/hello_flask.yaml -n teko-flask
 workflows:
   version: 2
   workflow:
