@@ -41,7 +41,7 @@ jobs:
     steps:
     - checkout
     - run: |
-        echo "$KUBE_CONFIG" > $KUBECONFIG
+        echo {$KUBE_CONFIG} > $KUBECONFIG
         sed -i "s/<VERSION>/${CI_COMMIT_REF_NAME}_$CI_COMMIT_SHA/g" deploy/hello_flask.yaml
         kubectl apply -f deploy/hello_flask.yaml -n teko-flask
 workflows:
@@ -49,5 +49,5 @@ workflows:
   workflow:
     jobs:
 #     - test
-    - build
+#     - build
     - deploy
