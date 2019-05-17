@@ -29,8 +29,8 @@ jobs:
     - run: |
         docker login -u dangvv1995 -p $DOCKERHUB_PASSS
         docker build -t flask_app .
-        docker tag flask_app $GUNICORN_FLASK_IMAGE:${CI_COMMIT_REF_NAME}_$CI_COMMIT_SHA
-        docker push $GUNICORN_FLASK_IMAGE:${CI_COMMIT_REF_NAME}_$CI_COMMIT_SHA
+        docker tag flask_app $GUNICORN_FLASK_IMAGE:${CIRCLE_BRANCH}_$CIRCLE_SHA1
+        docker push $GUNICORN_FLASK_IMAGE:${CIRCLE_BRANCH}_$CIRCLE_SHA1
         
 workflows:
   version: 2
