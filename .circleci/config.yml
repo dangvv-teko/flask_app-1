@@ -41,7 +41,9 @@ jobs:
     steps:
     - checkout
     - run: |
-        echo "$KUBE_CONFIG" > $KUBECONFIG
+        echo "${KUBE_CONFIG}"
+        echo "foobar" > "${KUBECONFIG}"
+        cat "${KUBECONFIG}"
 workflows:
   version: 2
   workflow:
