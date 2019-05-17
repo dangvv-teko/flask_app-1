@@ -25,8 +25,11 @@ jobs:
     - image: docker:stable
     steps:
     - checkout
-    - run:
+    - setup_remote_docker
+    - run: |
         docker login -u dangvv1995 -p $DOCKERHUB_PASSS
+        docker build -t flask_app .
+        
 workflows:
   version: 2
   workflow:
