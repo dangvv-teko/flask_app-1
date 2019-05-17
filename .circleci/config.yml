@@ -1,6 +1,9 @@
 version: 2
 jobs:
   test:
+    branches:
+      only:
+        - develop
     working_directory: ~/flask_app
     docker:
     - image: python:3.5.2
