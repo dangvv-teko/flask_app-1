@@ -39,7 +39,8 @@ jobs:
     steps:
     - checkout
     - run: |
-        echo "${KUBE_CONFIG}" | base64 --decode >> k8s-teko-flask-teko-flask-conf
+        base64 --help
+        echo "${KUBE_CONFIG}" | base64 -d > k8s-teko-flask-teko-flask-conf
         cat k8s-teko-flask-teko-flask-conf
         KUBECONFIG=k8s-teko-flask-teko-flask-conf kubectl config view
 workflows:
