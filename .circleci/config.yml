@@ -39,9 +39,8 @@ jobs:
     steps:
     - checkout
     - run: |
-        echo "$KUBE_CONFIG" > admin
-        export KUBECONFIG_SAVED=$KUBECONFIG
-        export KUBECONFIG=$KUBECONFIG:admin
+        export KUBECONFIG_SAVED="$KUBE_CONFIG"
+        export KUBECONFIG="$KUBE_CONFIG"
         kubectl config view
 workflows:
   version: 2
