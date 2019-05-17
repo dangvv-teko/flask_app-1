@@ -41,17 +41,17 @@ jobs:
     steps:
     - checkout
     - run: |
-        echo "${KUBE_CONFIG}" | base64 -di > $KUBECONFIG
-        sed -i "s/<VERSION>/${CIRCLE_BRANCH}_$CIRCLE_SHA1/g" deploy/hello_flask.yaml
-        kubectl apply -f deploy/hello_flask.yaml -n teko-flask
+        echo "${KUBE_CONFIG}" | base64 -di > ${KUBECONFIG}
+#        sed -i "s/<VERSION>/${CIRCLE_BRANCH}_$CIRCLE_SHA1/g" deploy/hello_flask.yaml
+#        kubectl apply -f deploy/hello_flask.yaml -n teko-flask
 workflows:
   version: 2
   workflow:
     jobs:
-    - test
-    - build:
-        requires:
-        - test
-    - deploy:
-        requires:
-        - build
+#     - test
+#     - build:
+#         requires:
+#         - test
+    - deploy
+#         requires:
+#         - build
