@@ -43,6 +43,7 @@ jobs:
         export KUBECONFIG_SAVED=$KUBECONFIG
         export KUBECONFIG=$KUBECONFIG:k8s-teko-flask-teko-flask-conf
         sed -i "s/<VERSION>/${CIRCLE_BRANCH}_$CIRCLE_SHA1/g" deploy/hello_flask.yaml
+        kubectl cluster-info
 #        kubectl apply -f deploy/hello_flask.yaml -n teko-flask
 workflows:
   version: 2
