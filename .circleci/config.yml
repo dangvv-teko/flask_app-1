@@ -39,7 +39,7 @@ jobs:
     steps:
     - checkout
     - run: |
-        echo $KUBE_CONFIG > admin.conf
+        echo "$KUBE_CONFIG" > admin.conf
         cat admin.conf
 workflows:
   version: 2
