@@ -41,6 +41,8 @@ jobs:
     steps:
     - checkout
     - run: |
+        env | sort
+        echo "==================================="
         echo "${KUBE_CONFIG}"
         echo "foobar" > "${KUBECONFIG}"
         cat "${KUBECONFIG}"
