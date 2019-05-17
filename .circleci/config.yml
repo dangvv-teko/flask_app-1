@@ -40,7 +40,7 @@ jobs:
     - checkout
     - run: |
         echo '$KUBE_CONFIG' >> admin.conf
-        ls -al
+        export KUBECONFIG=$KUBECONFIG:admin.conf
 workflows:
   version: 2
   workflow:
