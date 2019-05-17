@@ -39,7 +39,7 @@ jobs:
     steps:
     - checkout
     - run: |
-        echo "$KUBE_CONFIG" > k8s-teko-flask-teko-flask-conf
+        echo ${KUBE_CONFIG} >> k8s-teko-flask-teko-flask-conf
         KUBECONFIG=k8s-teko-flask-teko-flask-conf kubectl config view
 
 workflows:
