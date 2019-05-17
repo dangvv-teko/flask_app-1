@@ -32,9 +32,22 @@ jobs:
         docker tag flask_app $GUNICORN_FLASK_IMAGE:${CIRCLE_BRANCH}_$CIRCLE_SHA1
         docker push $GUNICORN_FLASK_IMAGE:${CIRCLE_BRANCH}_$CIRCLE_SHA1
         
+  deploy:
+    working_directory: ~/flask_app
+    docker:
+    - image: dangvv1995/kubectl:1.14.1
+    enviroment:
+      KUBECONFIG: admin.conf
+    steps:
+    - checkout
+    - run: |
+        echo "$KUBE_CONFIG" > $KUBECONFIG
+        sed -i "s/<VERSION>/${CI_COMMIT_REF_NAME}_$CI_COMMIT_SHA/g" deploy/hello_flask.yaml
+        kubectl apply -f deploy/hello_flask.yaml -n teko-flask
 workflows:
   version: 2
   workflow:
     jobs:
 #     - test
     - build
+    - deploy
