@@ -25,8 +25,7 @@ jobs:
     - image: docker:stable
     steps:
     - checkout
-    - run:
-      command: |
+    - run: |
         docker login -u dangvv1995 -p $DOCKERHUB_PASSS
         docker build -t flask_app .
         docker tag flask_app $GUNICORN_FLASK_IMAGE:${CI_COMMIT_REF_NAME}_$CI_COMMIT_SHA
@@ -35,5 +34,5 @@ workflows:
   version: 2
   workflow:
     jobs:
-    - test
+#     - test
     - build
